@@ -18,15 +18,6 @@ const prettierConfig: PrettierSchema = {
   tabWidth: 2,
   trailingComma: 'all',
   useTabs: false,
-  overrides: [
-    {
-      files: '*.yml',
-      options: {
-        tabWidth: 2,
-        useTabs: false,
-      },
-    },
-  ],
 };
 
 module.exports = prettierConfig;
