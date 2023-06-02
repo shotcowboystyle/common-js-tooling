@@ -1,0 +1,7 @@
+/packages/eslint-config/**/*.ts @shotcowboystyle
+/packages/eslint-plugin-result/**/*.ts @shotcowboystyle
+/packages/fetch/**/*.ts @shotcowboystyle
+/packages/node-utilities/**/*.ts @shotcowboystyle
+/packages/prettier-config/**/*.ts @shotcowboystyle
+/packages/result/**/*.ts @shotcowboystyle
+/packages/ts-config/**/*.ts @shotcowboystyle

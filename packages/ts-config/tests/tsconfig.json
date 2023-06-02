@@ -1,0 +1,10 @@
+{
+	"extends": "../extra-strict-without-decorators.json",
+	"compilerOptions": {
+		"lib": ["ESNext", "DOM"],
+		"noEmit": true,
+		"incremental": false,
+		"types": ["vitest/globals"]
+	},
+	"include": ["./"]
+}

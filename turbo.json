@@ -1,0 +1,38 @@
+{
+	"pipeline": {
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": ["dist/**"]
+		},
+		"lint": {
+			"dependsOn": [
+				"@shotcowboystyle/prettier-config#build",
+				"@shotcowboystyle/eslint-config#build"
+			],
+			"outputs": []
+		},
+		"test": {
+			"dependsOn": [
+				"@shotcowboystyle/fetch#build",
+				"@shotcowboystyle/result#build"
+			],
+			"outputs": ["coverage/**"]
+		},
+		"bump": {
+			"dependsOn": [],
+			"outputs": ["CHANGELOG.md"]
+		},
+		"check-update": {
+			"dependsOn": [],
+			"outputs": []
+		},
+		"docs": {
+			"dependsOn": [
+				"@shotcowboystyle/fetch#build",
+				"@shotcowboystyle/node-utilities#build",
+				"@shotcowboystyle/result#build"
+			],
+			"outputs": ["docs/**"]
+		}
+	}
+}
