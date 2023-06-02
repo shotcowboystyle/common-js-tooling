@@ -1,0 +1,3 @@
+name: eslint-config
+org: shotcowboystyle
+packagePath: packages/eslint-config

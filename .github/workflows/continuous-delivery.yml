@@ -1,0 +1,66 @@
+name: Continuous Delivery
+
+on:
+  workflow_dispatch:
+    inputs:
+      prNumber:
+        description: The number of the PR that is being deployed
+        required: true
+      ref:
+        description: The branch that is being deployed. Should be a branch on the given repository
+        required: false
+        default: main
+      repository:
+        description: The {owner}/{repository} that is being deployed.
+        required: false
+        default: shotcowboystyle/common-js-tooling
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    name: Publish Next to npm
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'shotcowboystyle'
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - eslint-config
+          - eslint-plugin-result
+          - fetch
+          - node-utilities
+          - result
+          - ts-config
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          repository: ${{ github.event.inputs.repository || 'shotcowboystyle/common-js-tooling' }}
+          ref: ${{ github.event.inputs.ref || 'main' }}
+      - name: Use Node.js v18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: 'https://npm.pkg.github.com'
+          # scope: '@shotcowboystyle'
+      - name: Install Dependencies
+        uses: ./.github/actions/install-deps
+      - name: Build all packages
+        run: pnpm build
+      - name: Bump Versions & Publish
+        working-directory: packages/${{ matrix.package }}
+        run: |
+          # Resolve the tag to be used. "next" for push events, "pr-{prNumber}" for dispatch events.
+          TAG=$([[ ${{ github.event_name }} == 'push' ]] && echo 'next' || echo 'pr-${{ github.event.inputs.prNumber }}')
+
+          pnpm config set npmAuthToken ${NODE_AUTH_TOKEN}
+          pnpm config set npmPublishRegistry "https://npm.pkg.github.com"
+
+          pnpm bump --preid "${TAG}.$(git rev-parse --verify --short HEAD)"
+
+          pnpm publish --tag ${TAG}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}

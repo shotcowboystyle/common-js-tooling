@@ -1,0 +1,11 @@
+{
+	"extends": ["./packages/eslint-config/dist/index.js", "plugin:@shotcowboystyle/result/recommended"],
+	"overrides": [
+		{
+			"files": ["*.test.ts"],
+			"rules": {
+				"@typescript-eslint/no-extraneous-class": "off"
+			}
+		}
+	]
+}

@@ -1,0 +1,61 @@
+{
+	"name": "@shotcowboystyle/fetch",
+	"version": "0.0.0",
+	"description": "Tiny wrapper around cross-fetch (for NodeJS) and window.fetch (for Browsers) for improved TypeScript and data type support",
+	"author": "@shotcowboystyle",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"browser": "dist/index.global.js",
+	"unpkg": "dist/index.global.js",
+	"types": "dist/index.d.ts",
+	"exports": {
+		"import": "./dist/index.mjs",
+		"require": "./dist/index.js",
+		"types": "./dist/index.d.ts"
+	},
+	"sideEffects": false,
+	"homepage": "https://github.com/shotcowboystyle/common-js-tooling/tree/main/packages/fetch",
+	"scripts": {
+		"test": "vitest run",
+		"lint": "eslint src tests --ext ts --fix -c ../../.eslintrc",
+		"build": "tsup",
+		"docs": "typedoc-json-parser",
+		"prepack": "pnpm build",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
+	},
+	"dependencies": {
+		"cross-fetch": "^3.1.6"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/shotcowboystyle/common-js-tooling.git",
+		"directory": "packages/fetch"
+	},
+	"files": [
+		"dist/**/*.js*",
+		"dist/**/*.mjs*",
+		"dist/**/*.d*"
+	],
+	"engines": {
+		"node": ">=16.9",
+		"pnpm": ">=8"
+	},
+	"bugs": {
+		"url": "https://github.com/shotcowboystyle/common-js-tooling/issues"
+	},
+	"publishConfig": {
+		"access": "public",
+    "registry": "https://npm.pkg.github.com/"
+	},
+	"devDependencies": {
+		"@favware/cliff-jumper": "^2.0.1",
+		"@vitest/coverage-c8": "^0.31.1",
+		"tsup": "^6.7.0",
+		"typedoc": "^0.24.7",
+		"typedoc-json-parser": "^8.1.2",
+		"typescript": "^5.0.4",
+		"vitest": "^0.31.1"
+	}
+}
