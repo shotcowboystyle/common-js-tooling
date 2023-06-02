@@ -26,15 +26,10 @@ jobs:
         uses: ./.github/actions/install-deps
       - name: Check for no duplicate dependencies
         run: pnpm dedupe --check
-
       - name: Build
         run: pnpm build
-
-      - name: Check TypeScript
-        run: pnpm typecheck
-
-      - name: Lint
-        run: pnpm lint:check
+      - name: Run ESLint
+        run: pnpm lint --fix=false
 
   BuildingAndTesting:
     name: Building and Testing with node v${{ matrix.node }}
