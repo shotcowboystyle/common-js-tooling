@@ -1,0 +1,27 @@
+'packages:eslint-config':
+  - packages/eslint-config/*
+  - packages/eslint-config/**/*
+
+'packages:eslint-plugin-result':
+  - packages/eslint-plugin-result/*
+  - packages/eslint-plugin-result/**/*
+
+'packages:fetch':
+  - packages/fetch/*
+  - packages/fetch/**/*
+
+'packages:node-utilities':
+  - packages/node-utilities/*
+  - packages/node-utilities/**/*
+
+'packages:prettier-config':
+  - packages/prettier-config/*
+  - packages/prettier-config/**/*
+
+'packages:result':
+  - packages/result/*
+  - packages/result/**/*
+
+'packages:ts-config':
+  - packages/ts-config/*
+  - packages/ts-config/**/*
