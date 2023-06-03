@@ -61,6 +61,6 @@ jobs:
 
           pnpm bump --preid "${TAG}.$(git rev-parse --verify --short HEAD)"
 
-          pnpm publish --tag ${TAG}
+          pnpm publish --no-git-checks --tag ${TAG}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
