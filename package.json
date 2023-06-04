@@ -9,6 +9,7 @@
 		"format": "prettier --write \"packages/**/{src,tests,scripts}/**/*.{mjs,ts,js}\"",
 		"test": "vitest run",
 		"build": "turbo run build",
+    "bump": "turbo run bump",
 		"docs": "turbo run docs",
 		"update": "pnpm -r update -Li"
 	},
